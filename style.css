@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    list-style: none;
+    border: none;
+}
+
+:root{
+    --dark: #34495e;
+    --light: #ffffff;
+    --success:#0abf30; 
+    --error: #e24d4c;
+    --warning: #e9bd0c;
+    --info: #3498db;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background: #394867;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.notification{
+    background: #394867;
+    width: 25rem;
+    position: fixed;
+    top: 1.3rem;
+    right: 1.3rem;
+    z-index: 2;
+}
+
+.toast{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:.7rem .5rem;
+    margin-bottom: .5rem;
+    background: white;
+    border-radius: .3rem;
+    position: relative;
+    overflow: hidden;
+    animation: show_toast 0.3s ease forwards;
+}
+
+@keyframes show_toast{
+    0%{
+        transform: translateX(100%);
+    }
+    40%{
+        transform: translateX(-5%);
+    }
+    80%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-10px);
+    }
+}
+
+.notification .toast.hide{
+    animation: hide_toast 0.3s ease forwards;
+}
+
+@keyframes hide_toast{
+    0%{
+        transform: translateX(-10px);
+    }
+    40%{
+        transform: translateX(0%);
+    }
+    80%{
+        transform: translateX(-5%);
+    }
+    100%{
+        transform: translateX(calc(100% + 20px));
+    }
+}
+
+.notification :where(.toast, .column){
+    display: flex;
+    align-items: center;
+}
+.column{
+    gap: .5rem;
+}
+
+.success::before,#success{
+    background: var(--success);
+}
+.error::before,#error{
+    background: var(--error);
+}
+.warning::before,#warning{
+    background: var(--warning);
+}
+.info::before,#info{
+    background: var(--info);
+}
+
+
+
+.toast i{
+    font-size: 1.3rem;
+}
+.toast i:last-child{
+    color: rgb(181, 181, 181);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.toast i:last-child:hover{
+    color: rgb(200, 66, 66);
+    transform: scale(1.1);
+}
+.toast::before{
+    content: "";
+    width: 100%;
+    height: 4px;
+    border-radius: 1rem;
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+    left: 0;
+    animation: progress 5s linear forwards ;
+}
+@keyframes progress{
+    100%{
+        width: 0%;
+    }
+}
+.buttons button{
+    padding: .5rem 1rem;
+    border-radius: .2rem;
+    font-size: 1.3rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0 .5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1;
+}
+button:hover{
+    opacity: .8;
+    scale: 1.05;
+}
+
